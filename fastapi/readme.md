@@ -41,3 +41,6 @@ $ gunicorn --keyfile=./key.pem --certfile=./cert.pem -k uvicorn.workers.UvicornW
 The WebSocket protocol is different from the HTTP protocol, but the WebSocket handshake is compatible with HTTP, using the HTTP Upgrade facility to upgrade the connection from HTTP to WebSocket. This allows WebSocket applications to more easily fit into existing infrastructures. 
 
 For example, WebSocket applications can use the standard HTTP ports 80 and 443, thus allowing the use of existing firewall rules.
+
+# WebSocket on Django
+* https://websockets.readthedocs.io/en/stable/howto/django.html
