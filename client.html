@@ -21,7 +21,7 @@
             {
                 if ("WebSocket" in window)
                 {
-                    var server = "localhost:5678"
+                    var server = "localhost:5678/hello/world"
                     var ws = new WebSocket("ws://" + server);
                     clearstatus();
                     printstatus ('Connecting to ' + server);

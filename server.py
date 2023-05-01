@@ -14,7 +14,7 @@ import subprocess
 
 async def run_cmd(websocket, path):
     async for message in websocket:
-        print(f">  {message}")
+        print(f">  {message} {path}")
         greeting = f"> {message}"
         await websocket.send(greeting)
 
@@ -38,7 +38,19 @@ async def run_cmd(websocket, path):
         else:
             await websocket.send('Non unicode data received! Send text please :)')
 
-asyncio.get_event_loop().run_until_complete(
-    websockets.serve(run_cmd, 'localhost', 5678))
+# asyncio.get_event_loop().run_until_complete(websockets.serve(run_cmd, 'localhost', 5678))
 
-asyncio.get_event_loop().run_forever()
+# asyncio.get_event_loop().run_forever()
+
+def start_server_main_in_sync():
+    # start websocket server
+    start_server = websockets.serve(run_cmd, 'localhost', 5678)
+    asyncio.get_event_loop().run_until_complete(start_server)
+    asyncio.get_event_loop().run_forever()
+
+async def main():
+    async with websockets.serve(run_cmd, "localhost", 5678):
+        await asyncio.Future()  # run forever
+
+if __name__ == "__main__":
+    asyncio.run(main())
